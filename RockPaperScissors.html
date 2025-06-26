@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
 
+  <h1>Rock Paper Scissors</h1>
+
+  <button id="rock">🪨 Rock</button>
+  <button id="paper">📄 Paper</button>
+  <button id="scissors">✂️ Scissors</button>
+
+  <p id="result"></p>
+
+  <script>
+    const result = document.getElementById("result");
+
+    const choices = ["rock", "paper", "scissors"];
+
+    function getComputerChoice() {
+      const randomIndex = Math.floor(Math.random() * choices.length);
+      return choices[randomIndex];
+    }
+
+    function playRound(playerChoice) {
+      const computerChoice = getComputerChoice();
+      let outcome = "";
+
+      if (playerChoice === computerChoice) {
+        outcome = `It's a draw! You both chose ${playerChoice}.`;
+      } else if (
+        (playerChoice === "rock" && computerChoice === "scissors") ||
+        (playerChoice === "paper" && computerChoice === "rock") ||
+        (playerChoice === "scissors" && computerChoice === "paper")
+      ) {
+        outcome = `You win! ${playerChoice} beats ${computerChoice}.`;
+      } else {
+        outcome = `You lose! ${computerChoice} beats ${playerChoice}.`;
+      }
+
+      result.textContent = outcome;
+    }
+
+    document.getElementById("rock").addEventListener("click", () => playRound("rock"));
+    document.getElementById("paper").addEventListener("click", () => playRound("paper"));
+    document.getElementById("scissors").addEventListener("click", () => playRound("scissors"));
+  </script>
+
+</body>
+</html>
